@@ -17,7 +17,7 @@ def cadastrar_tipo(session,codigo,nome):
         session.commit()
     except Exception as e:
         session.rollback()
-        print("Erro ao cadastrar tipo:", e)
+        raise
 
     return tipo
 
