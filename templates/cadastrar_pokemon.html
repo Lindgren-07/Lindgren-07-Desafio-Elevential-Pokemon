@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema - Pokemons</title>
+    <link rel="stylesheet" href="/static/styles/cadastrar_pokemon.css">
+
+</head>
+<body>
+
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+    
+  
+
+<form action="{{ url_for('salvar_pokemon') }}" method="POST">
+    <h1>{{ 'Editar' if edicao else 'Cadastrar' }} Pokémon</h1>
+    
+    {% if edicao %}
+        <input type="hidden" name="modo" value="editar">
+    {% endif %}
+
+    <label for="codigo">Código:</label><br>
+    <input type="number" id="codigo" name="codigo" required
+           value="{{ pokemon.codigo if edicao else '' }}"
+           {% if edicao %}readonly{% endif %}><br><br>
+
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome" required
+           value="{{ pokemon.nome if edicao else '' }}"><br><br>
+
+    <label for="tipo1">Tipo Primário:</label><br>
+    <select id="tipo1" name="tipo1" required>
+    <option value="" disabled selected>Selecione um tipo...</option>
+    {% for codigo, nome in tipos.items() %}
+        <option value="{{ codigo }}"
+            {% if edicao and pokemon.codigo_tipo_primario == codigo %}selected{% endif %}>
+            {{ nome }}
+        </option>
+    {% endfor %}
+    </select><br><br>
+
+    <label for="tipo2">Tipo Secundário (opcional):</label><br>
+   <select id="tipo2" name="tipo2">
+      <option value="" selected>Selecione um tipo (opcional)...</option>  
+      {% for codigo, nome in tipos.items() %}
+        <option value="{{ codigo }}" {% if edicao and pokemon.codigo_tipo_secundario == codigo %}selected{% endif %}>{{ nome }}</option>
+      {% endfor %}
+  </select>
+
+    <button type="submit">{{ 'Salvar Alterações' if edicao else 'Cadastrar' }}</button>
+   
+</form>
+
+
+    <a href="/" class="btn-voltar">← Voltar</a>
+
+
+
+
+</body>

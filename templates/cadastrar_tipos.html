@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema - Tipos</title>
+    <link rel="stylesheet" href="/static/styles/cadastrar_tipos.css">
+
+</head>
+<body>
+
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+    
+  
+
+<form action="{{ url_for('salvar_tipos') }}" method="POST">
+    <h1>{{ 'Editar' if edicao else 'Cadastrar' }} Tipos</h1>
+    
+    {% if edicao %}
+        <input type="hidden" name="modo" value="editar">
+    {% endif %}
+
+    <label for="codigo">Código:</label><br>
+    <input type="number" id="codigo" name="codigo" required
+           value="{{ tipo.codigo if edicao else '' }}"
+           {% if edicao %}readonly{% endif %}><br><br>
+
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome" required
+           value="{{ tipo.nome if edicao else '' }}"><br><br>
+
+    <button type="submit">{{ 'Salvar Alterações' if edicao else 'Cadastrar' }}</button>
+   
+</form>
+
+
+    <a href="/" class="btn-voltar">← Voltar</a>
+
+
+
+
+</body>

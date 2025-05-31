@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #d8b4fe, #8b5cf6); 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form {
+    background-color: #f8f4ff; 
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(139, 92, 246, 0.3); 
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    color: #6d28d9; 
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    color: #4c1d95; 
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #c4b5fd;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #faf5ff; 
+}
+
+input:focus {
+    border-color: #7c3aed; 
+    outline: none;
+    box-shadow: 0 0 5px #7c3aed;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #7c3aed; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5b21b6; 
+}
+
+.flash-messages {
+    position: fixed;
+    top: 20px;           
+    left: 50%;           
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 90%;
+    max-width: 400px;
+}
+
+.flash-message {
+    background-color: #6a4fbf; 
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(106, 79, 191, 0.6);
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    animation: fadeInOut 4s forwards;
+}
+
+@keyframes fadeInOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.btn-voltar {
+    display: inline-block;
+    margin-left: 15px;
+    padding: 8px 15px;
+    background-color: #7b68ee; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+.btn-voltar:hover {
+    background-color: #5a47cc; 
+    cursor: pointer;
+}

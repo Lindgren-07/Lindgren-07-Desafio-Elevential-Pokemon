@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema - Pokemons</title>
+    <link rel="stylesheet" href="/static/styles/exibir_pokemons.css">
+
+</head>
+<body>
+
+     {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+ <h1>Filtrar Pokémons</h1>
+
+<form method="GET" action="{{ url_for('exibir_pokemons') }}" class="form_filtro">
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" id="nome" value="{{ request.args.get('nome', '') }}">
+
+    <label for="tipo">Tipo:</label>
+    <input type="text" name="tipo" id="tipo" value="{{ request.args.get('tipo', '') }}">
+
+    <button type="submit">Filtrar</button>
+</form>
+
+<a href="/" class="btn-voltar">← Voltar</a>
+
+ <h1>Lista de Pokémons</h1>
+<div class="lista">
+
+
+    {% for pokemon in pokemons %}
+        <div class="pokemon-card">
+            <div class="pokemon-nome">{{ pokemon.codigo }} - {{ pokemon.nome }}</div>
+            <div>Tipo Primário: {{ tipos[pokemon.codigo_tipo_primario] }}</div>
+            <div>Tipo Secundário: {{ tipos[pokemon.codigo_tipo_secundario] if pokemon.codigo_tipo_secundario else 'Nenhum' }}</div>
+
+
+            <div class="botoes">
+                <form action="{{ url_for('editar_pokemon', codigo=pokemon.codigo) }}" method="get" style="display:inline;">
+                    <button class="editar">Editar</button>
+                </form>
+
+                <form action="{{ url_for('deletar_pokemon_route', codigo=pokemon.codigo) }}" method="post" style="display:inline;">
+                    <button class="excluir" onclick="return confirm('Tem certeza que deseja excluir este Pokémon?');">Excluir</button>
+                </form>
+
+            </div>
+        </div>
+    {% else %}
+        <p>Nenhum Pokémon cadastrado.</p>
+    {% endfor %}
+
+</div>
+
+ 
+
+</body>

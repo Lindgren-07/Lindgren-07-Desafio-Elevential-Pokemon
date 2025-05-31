@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema - Tipos</title>
+    <link rel="stylesheet" href="/static/styles/exibir_tipos.css">
+
+</head>
+<body>
+
+     {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+ <h1>Filtrar Tipos</h1>
+
+<form method="GET" action="{{ url_for('exibir_tipos') }}" class="form_filtro">
+
+    <label for="codigo">Código:</label>
+    <input type="text" name="codigo" id="codigo" value="{{ request.args.get('codigo', '') }}">
+
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" id="nome" value="{{ request.args.get('nome', '') }}">
+
+    <button type="submit">Filtrar</button>
+</form>
+
+<a href="/" class="btn-voltar">← Voltar</a>
+
+ <h1>Lista de Tipos</h1>
+<div class="lista">
+
+
+{% for tipo in tipos %}
+    <div class="tipos-card">
+        <div class="tipos-nome">{{ tipo.codigo }} - {{ tipo.nome }}</div>
+       
+        <div class="botoes">
+            <form action="{{ url_for('editar_tipos', codigo=tipo.codigo) }}" method="get" style="display:inline;">
+                <button class="editar">Editar</button>
+            </form>
+
+            <form action="{{ url_for('deletar_tipo_route', codigo=tipo.codigo) }}" method="post" style="display:inline;">
+                <button class="excluir" onclick="return confirm('Tem certeza que deseja excluir este Tipo?');">Excluir</button>
+            </form>
+        </div>
+    </div>
+{% else %}
+    <p>Nenhum Tipo cadastrado.</p>
+{% endfor %}
+
+
+</div>
+
+ 
+
+</body>
