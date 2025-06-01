@@ -65,4 +65,4 @@ Rode o arquivo "main.py" uma vez para estabelecer a conexão, em seguida rode o 
 Execute novamente o arquivo "main.py" para estabelecer a conexão e acessar o sistema.
 
 ### 6. 	Link do vídeo no YouTube mostrando o projeto.
-https://youtu.be/Q104AfhqpbU?si=AZs2u4JSwVQ_dtgp
+https://youtu.be/PNEETNTSTB4
